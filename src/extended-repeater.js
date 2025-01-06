@@ -15,52 +15,19 @@ const { NotImplementedError } = require('../extensions/index.js');
  * => 'STRINGPLUS00PLUS00PLUS**STRINGPLUS00PLUS00PLUS**STRINGPLUS00PLUS00PLUS'
  *
  */
-function repeater(/* str, options */) {
-  // let strCopy = str;
-  // if (options.repeatTimes) {
-  //   str = str.split(' ');
-  //   for (let i = 1; i < options.repeatTimes; i++) {
-  //     str.push(strCopy);
-  //   }
+function repeater(str, options) {
+  let addStr = '';
+  let resStr = '';
 
-  //   // Separator
-  //   if (options.separator) {
-  //     str = str.join(`${options.separator}`);
-  //   } else {
-  //     str = str.join('+');
-  //   }
+  if (options.addition !== undefined) {
+    options.addition = String(options.addition)
+  }
 
-  //   // Addition
-  //   if (options.addition) {
-  //     let add = '' + options.addition;
-  //     let addCopy = add;
+  addStr = new Array(options.additionRepeatTimes || 1).fill(options.addition || '').join(`${options.additionSeparator || '|'}`);
 
-  //     //Addition Repeat Times
-  //     if (options.additionRepeatTimes) {
-  //       add = add.split(' ');
-  //       for (let i = 1; i < options.additionRepeatTimes; i++) {
-  //         add.push(addCopy);
-  //       }
+  resStr = new Array(options.repeatTimes || 1).fill(String(str) + addStr).join(`${options.separator || '+'}`);
 
-  //       // Addition Separator
-  //       if (options.additionSeparator) {
-  //         add = add.join(`${options.additionSeparator}`);
-  //       } else {
-  //         add = add.join('|');
-  //       }
-  //     }
-
-  //     // Merge Str and Addition
-  //     if (options.separator) {
-  //       str = str.split(`${options.separator}`).map(item => item + add).join(`${options.separator}`);
-  //     } else {
-  //       str = str.split('+').map(item => item + add).join('+');
-  //     }
-  //   }
-  // }
-  // return str;
-  throw new NotImplementedError('Not implemented');
-  // remove line with error and write your code here
+  return resStr;
 }
 
 module.exports = {
